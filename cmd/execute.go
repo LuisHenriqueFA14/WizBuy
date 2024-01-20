@@ -5,6 +5,7 @@ import (
     "os"
 
     "github.com/LuisHenriqueFA14/WizBuy/internal/database"
+    "github.com/LuisHenriqueFA14/WizBuy/internal/controllers"
 
     "github.com/joho/godotenv"
 )
@@ -17,9 +18,9 @@ func Execute() {
 
     database.Connect(os.Getenv("DBHOST"),os.Getenv("DBUSER"), os.Getenv("DBPASS"), os.Getenv("DBNAME"), os.Getenv("DBPORT"))
 
-    http.HandleFunc("/hello", func(w http.ResponseWriter, r *http.Request) {
-        w.Write([]byte("Hello, World!"))
-    })
+    userController := controllers.UserController{}
+
+    http.HandleFunc("/user", userController.Handle)
 
     err = http.ListenAndServe(":" + os.Getenv("PORT"), nil)
 
