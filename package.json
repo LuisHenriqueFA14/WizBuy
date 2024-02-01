@@ -9,8 +9,12 @@
   "author": "Luís Henrique",
   "license": "MIT",
   "dependencies": {
+    "@prisma/client": "5.9.1",
     "dotenv": "^16.4.1",
     "has-symbols": "^1.0.3",
     "koa": "^2.15.0"
+  },
+  "devDependencies": {
+    "prisma": "^5.9.1"
   }
 }
