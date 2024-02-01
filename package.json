@@ -1,0 +1,16 @@
+{
+  "name": "WizBuy",
+  "version": "1.0.0",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js"
+  },
+  "repository": "git@github.com:LuisHenriqueFA14/WizBuy.git",
+  "author": "Luís Henrique",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^16.4.1",
+    "has-symbols": "^1.0.3",
+    "koa": "^2.15.0"
+  }
+}
