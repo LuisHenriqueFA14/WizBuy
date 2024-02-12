@@ -14,6 +14,7 @@
     "bcrypt": "^5.1.1",
     "dotenv": "^16.4.1",
     "has-symbols": "^1.0.3",
+    "jsonwebtoken": "^9.0.2",
     "koa": "^2.15.0",
     "koa-bodyparser": "^4.4.1",
     "koa-json": "^2.0.2"

@@ -1,5 +1,6 @@
 const { createUserController } = require('./controllers/createUserController');
 const { readUserController } = require('./controllers/readUserController');
+const { loginController } = require('./controllers/loginController');
 
 async function router(ctx) {
     switch (`${ctx.method} ${ctx.path}`) {
@@ -8,6 +9,9 @@ async function router(ctx) {
             break;
         case ('GET /user'):
             await readUserController(ctx);
+            break;
+        case ('POST /login'):
+            await loginController(ctx);
             break;
         default:
             ctx.body = 'Hello World!';
