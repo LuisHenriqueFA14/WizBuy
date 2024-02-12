@@ -1,6 +1,15 @@
 const { prisma } = require('../database');
 
 async function readUserService(id) {
+    if(!id) {
+        return {
+            error: {
+                type: 'BadRequest',
+                message: 'Id is required'
+            }
+        };
+    }
+
     const user = await prisma.user.findUnique({
         where: {
             id

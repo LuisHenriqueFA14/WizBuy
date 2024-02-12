@@ -1,4 +1,5 @@
 const { readUserService } = require('../services/readUserService');
+const { errorToHttp } = require('../errors/errorToHttp');
 
 async function readUserController(ctx) {
     const id = ctx.query.id;
