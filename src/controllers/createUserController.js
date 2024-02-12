@@ -9,18 +9,16 @@ async function createUserController(ctx) {
     if (error) {
         const code = errorToHttp(error);
 
-        return {
-            code,
-            body: {
-                message: error.message
-            }
+        ctx.status = code;
+        ctx.body = {
+            message: error.message
         };
+
+        return;
     }
 
-    return {
-        code: 201,
-        body: response
-    };
+    ctx.status = 201;
+    ctx.body = response;
 }
 
 module.exports = { createUserController };
