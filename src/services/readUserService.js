@@ -1,6 +1,6 @@
-const { prisma } = require('../database');
+const { database } = require('../database');
 
-async function readUserService(id) {
+async function readUserService({ id }, db = database) {
     if(!id) {
         return {
             error: {
@@ -10,7 +10,7 @@ async function readUserService(id) {
         };
     }
 
-    const user = await prisma.user.findUnique({
+    const user = await db.user.findUnique({
         where: {
             id
         }

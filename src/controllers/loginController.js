@@ -4,7 +4,7 @@ const { errorToHttp } = require('../errors/errorToHttp');
 async function loginController(ctx) {
     const { email, password } = ctx.request.body;
 
-    const { response, error } = await loginService(email, password);
+    const { response, error } = await loginService({ email, password });
 
     if (error) {
         const code = errorToHttp(error);

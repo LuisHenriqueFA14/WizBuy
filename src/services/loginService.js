@@ -1,8 +1,8 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const { prisma } = require('../database');
+const { database } = require('../database');
 
-async function loginService(email, password) {
+async function loginService({ email, password }, db = database) {
     if (!email || !password) {
         return {
             error: {
@@ -12,7 +12,7 @@ async function loginService(email, password) {
         };
     }
 
-    const user = await prisma.user.findFirst({
+    const user = await db.user.findFirst({
         where: {
             email
         }

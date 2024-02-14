@@ -1,9 +1,9 @@
-const { prisma } = require('../database');
+const { database } = require('../database');
 const bcrypt = require('bcrypt');
 
 const { isValidEmail, isValidPassword } = require('../utils/validate');
 
-async function createUserService(name, email, password) {
+async function createUserService({ name, email, password }, db = database) {
     if(!name || !email || !password) {
         return {
             error: {
@@ -31,7 +31,7 @@ async function createUserService(name, email, password) {
         };
     }
 
-    const emailInUse = await prisma.user.findFirst({
+    const emailInUse = await db.user.findFirst({
         where: {
             email
         }
@@ -57,7 +57,7 @@ async function createUserService(name, email, password) {
         };
     }
 
-    const user = await prisma.user.create({
+    const user = await db.user.create({
         data: {
             name,
             email,
