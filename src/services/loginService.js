@@ -43,6 +43,15 @@ async function loginService({ email, password }, db = database) {
         process.env.JWT_SECRET,
         { expiresIn: '30d' }
     );
+
+    if (!token) {
+        return {
+            error: {
+                type: 'InternalServerError',
+                message: 'Failed to generate token'
+            }
+        };
+    }
         
     return {
         response: {
