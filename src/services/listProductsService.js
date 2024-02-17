@@ -24,8 +24,6 @@ async function listProductsService({ search, category }, db = database) {
         }
     });
 
-    products = products.map(product => new Product(product));
-
     if (!products) {
         return {
             error: {
@@ -34,6 +32,8 @@ async function listProductsService({ search, category }, db = database) {
             }
         }
     }
+
+    products = products.map(product => new Product(product));
 
     return {
         response: products
