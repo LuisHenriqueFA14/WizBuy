@@ -1,6 +1,9 @@
 const { createUserController } = require('./controllers/createUserController');
 const { readUserController } = require('./controllers/readUserController');
 const { loginController } = require('./controllers/loginController');
+const { updateUserController } = require('./controllers/updateUserController');
+
+const { ensureAuthentication } = require('./middlewares/ensureAuthentication');
 
 async function router(ctx) {
     switch (`${ctx.method} ${ctx.path}`) {
@@ -12,6 +15,9 @@ async function router(ctx) {
             break;
         case ('POST /login'):
             await loginController(ctx);
+            break;
+        case ('PUT /user'):
+            await ensureAuthentication(ctx, updateUserController);
             break;
         default:
             ctx.body = 'Hello World!';
