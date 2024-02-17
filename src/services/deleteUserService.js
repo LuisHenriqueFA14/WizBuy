@@ -31,7 +31,7 @@ async function deleteUserService({ password, userId }, db = database) {
     if (!isPasswordValid) {
         return {
             error: {
-                type: 'BadRequest',
+                type: 'Unauthorized',
                 message: 'Invalid password'
             }
         };
