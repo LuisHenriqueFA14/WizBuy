@@ -1,7 +1,7 @@
 const jsonwebtoken = require('jsonwebtoken');
 
 async function ensureAuthentication(ctx, next) {
-    const token = ctx.headers.authorization.split(' ')[1];
+    let token = ctx.headers.authorization;
 
     if (!token) {
         ctx.status = 401;
@@ -13,12 +13,12 @@ async function ensureAuthentication(ctx, next) {
 
         return;
     }
+
+    token = token.replace('Bearer ', '');
     
     try {
         const decoded = jsonwebtoken.verify(token, process.env.JWT_SECRET);
-        ctx.userId = decoded;
-
-        await next();
+        ctx.userId = decoded.id;
     } catch (error) {
         ctx.status = 401;
         ctx.body = {
@@ -29,6 +29,8 @@ async function ensureAuthentication(ctx, next) {
 
         return;
     }
+
+    await next(ctx);
 }
 
 module.exports = { ensureAuthentication };
