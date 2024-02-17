@@ -3,6 +3,7 @@ const { readUserController } = require('./controllers/readUserController');
 const { loginController } = require('./controllers/loginController');
 const { updateUserController } = require('./controllers/updateUserController');
 const { deleteUserController } = require('./controllers/deleteUserController');
+const { listProductsController } = require('./controllers/listProductsController');
 
 const { ensureAuthentication } = require('./middlewares/ensureAuthentication');
 
@@ -22,6 +23,9 @@ async function router(ctx) {
             break;
         case ('DELETE /user'):
             await ensureAuthentication(ctx, deleteUserController);
+            break;
+        case ('GET /products'):
+            await listProductsController(ctx);
             break;
         default:
             ctx.body = 'Hello World!';
