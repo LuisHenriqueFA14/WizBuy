@@ -4,6 +4,7 @@ const { loginController } = require('./controllers/loginController');
 const { updateUserController } = require('./controllers/updateUserController');
 const { deleteUserController } = require('./controllers/deleteUserController');
 const { listProductsController } = require('./controllers/listProductsController');
+const { readProductController } = require('./controllers/readProductController');
 
 const { ensureAuthentication } = require('./middlewares/ensureAuthentication');
 
@@ -26,6 +27,9 @@ async function router(ctx) {
             break;
         case ('GET /products'):
             await listProductsController(ctx);
+            break;
+        case ('GET /product'):
+            await readProductController(ctx);
             break;
         default:
             ctx.body = 'Hello World!';
