@@ -1,7 +1,7 @@
 const { database } = require('../database');
 
-async function listCartService({ userId }) {
-    const cart = await database.cart.findMany({
+async function listCartService({ userId }, db = database) {
+    const cart = await db.cart.findMany({
         where: {
             userId
         }
@@ -19,11 +19,20 @@ async function listCartService({ userId }) {
     let products = [];
 
     for (let i = 0; i < cart.length; i++) {
-        const product = await database.product.findUnique({
+        const product = await db.product.findUnique({
             where: {
                 id: cart[i].productId
             }
         });
+
+        if (!product) {
+            return {
+                error: {
+                    type: 'NotFound',
+                    message: 'Product not found'
+                }
+            }
+        }
 
         products.push({
             id: product.id,
