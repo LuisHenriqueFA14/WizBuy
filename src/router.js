@@ -6,6 +6,7 @@ const { deleteUserController } = require('./controllers/deleteUserController');
 const { listProductsController } = require('./controllers/listProductsController');
 const { readProductController } = require('./controllers/readProductController');
 const { addToCartController } = require('./controllers/addToCartController');
+const { listCartController } = require('./controllers/listCartController');
 
 const { ensureAuthentication } = require('./middlewares/ensureAuthentication');
 
@@ -34,6 +35,9 @@ async function router(ctx) {
             break;
         case ('POST /cart'):
             await ensureAuthentication(ctx, addToCartController);
+            break;
+        case ('GET /cart'):
+            await ensureAuthentication(ctx, listCartController);
             break;
         default:
             ctx.body = 'Hello World!';
