@@ -1,11 +1,5 @@
 const { database } = require('../database');
 
-// product parameters format:
-// {
-//     id: "uuid"
-//     quantity: 1
-// }
-
 async function addToCartService({ id, quantity, userId }, db = database) {
     if (!id) {
         return {
@@ -50,7 +44,7 @@ async function addToCartService({ id, quantity, userId }, db = database) {
         };
     }
 
-    const cart = await db.cart.findMany({
+    let cart = await db.cart.findMany({
         where: {
             userId
         }

@@ -75,5 +75,5 @@ describe('createUserService', () => {
         expect(response).toBeUndefined();
         expect(error).toBeDefined();
         expect(error.type).toBe('InternalServerError');
-    })
+    });
 })
