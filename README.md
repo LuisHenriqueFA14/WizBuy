@@ -1,8 +1,6 @@
 <h1 align="center">WizBuy</h1>
 <p align="center">Buy like a wizard, save like a muggle!</p>
 
----
-
 ## Table of Contents
 
 - [Stack](#stack)
